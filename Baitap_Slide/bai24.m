@@ -15,6 +15,7 @@ function output = bai24(a,r,y0,h,k1,k2)
         y(i+1) = y(i) + h*f(t(i),y(i));
         t(i+1) = t(i) + h;
     end
+    output = [t' y' y_gt(t)'];
     plot(t,y,'ro-','linewidth', 2);
     hold on
     plot(t,y_gt(t),'b*-','linewidth',2);
