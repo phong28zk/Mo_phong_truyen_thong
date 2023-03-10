@@ -5,7 +5,7 @@
 % a = 1, r = 1, y(0) = 0; h = 0.25; t = 1
 % RK 3
 
-function output = bai24(a,r,y0,h,k1,k2)
+function output = bai25(a,r,y0,h,k1,k2)
     f = @(t,y) r - a*y;
     y_gt = @(t) (y0 - r/a)*exp(-a*t) + r/a;
     n = (k2 - k1)/h;
