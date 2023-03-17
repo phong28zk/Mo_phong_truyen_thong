@@ -1,6 +1,6 @@
 % Code by Tran Nam Phong - B20DCVT288
 
-% Bai 25:
+% Bai 26:
 % Tim nghiem phuong trinh vi phan y'(t) + a*y(t) = r
 % a = 1, r = 1, y(0) = 0; h = 0.25; t = 1
 % RK 4
