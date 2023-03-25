@@ -1,6 +1,6 @@
 % Code by Tran Nam Phong - B20DCVT288
 
-% Slash 6
+% Slash 7
 
 function [A,B,C,z] = slash7(a,b)
 

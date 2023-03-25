@@ -1,0 +1,24 @@
+Để giải bài toán này bằng Matlab Simulink, ta có thể thực hiện các bước sau:
+
+Bước 1: Tạo một mô hình Simulink mới
+
+Bước 2: Thêm một khối "Transfer Function" vào mô hình
+
+Bước 3: Thiết lập hệ số hàm truyền của khối "Transfer Function" bằng cách nhập vào đa thức số và đa thức mẫu tương ứng với phương trình
+
+- Đa thức số: 4
+- Đa thức mẫu: t*s^2 + 2*s + 4
+
+Bước 4: Thêm khối "Step" vào mô hình để tạo một tín hiệu bước đơn với thời gian bắt đầu là 1
+
+Bước 5: Thêm khối "Scope" vào mô hình để hiển thị đồ thị kết quả
+
+Bước 6: Kết nối các khối lại với nhau, sao cho tín hiệu bước từ khối "Step" được đưa vào khối "Transfer Function", và kết quả đầu ra từ khối "Transfer Function" được đưa vào khối "Scope"
+
+Bước 7: Thiết lập giá trị ban đầu cho biến y(0) và y'(0) bằng cách thêm khối "IC" vào mô hình và nhập giá trị tương ứng
+
+Bước 8: Chạy mô hình Simulink
+
+Sau khi chạy mô hình, đồ thị của hàm số y(t) sẽ được hiển thị trên khối "Scope". Ta có thể đọc giá trị của y(t) tại thời điểm t = 1 từ đồ thị này.
+
+Lưu ý: Trong Simulink, các biến và hằng số được định nghĩa bằng cách sử dụng các khối đặc biệt. Trong ví dụ này, ta sử dụng khối "Transfer Function" để định nghĩa hệ số hàm truyền, khối "Step" để tạo tín hiệu bước, khối "Scope" để hiển thị đồ thị kết quả, và khối "IC" để thiết lập giá trị ban đầu cho biến y(t) và y'(t).
