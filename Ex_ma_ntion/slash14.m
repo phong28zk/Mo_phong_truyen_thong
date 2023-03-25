@@ -1,6 +1,6 @@
 % Code by Tran Nam Phong - B20DCVT288
 
-% Slash 12
+% Slash 14
 
 function [A,B] = slash14(a,b)
     x = -2*pi:pi/20:2*pi;

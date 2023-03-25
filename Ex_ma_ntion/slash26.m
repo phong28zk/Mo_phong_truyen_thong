@@ -23,14 +23,7 @@ for i=1:N_euler
 end
 
 % Solve the ODE using Heun's method (improved Euler
-Tin nhắn đã nhận.
 
-Thích
-Không thíchKhác
-Giải phương trình vi phân sau theo phương pháp euler và euler biến đổi trên đoạn [0, max(a,b)] : 𝑦' = 𝑎x^-2 − 𝑏 với y(0)=1, h=0.0a
-Đã gửi thư.
-Giải phương trình vi phân sau theo phương pháp euler và euler biến đổi trên đoạn [0, max(a,b)] : 𝑦' = 𝑎x^-2 − 𝑏 với y(0)=1, h=0.0a với a = b = 8
-Đã gửi thư. Giải phương trình vi phân sau theo phương pháp euler và euler biến đổi trên đoạn [0, max(a,b)] : 𝑦' = 𝑎x^-2 − 𝑏 với y(0)=1, h=0.0a với a = b = 8
 % Define the differential equation
 dydt = @(x,y,a,b) a*x^(-2) - b;
 
