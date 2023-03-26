@@ -12,6 +12,6 @@ function output = bai23()
         x0 = x1;
         x1 = x0 - (x0^2 - 2)/(2*x0);
     end
-    disp(x1);
+    output = x1;
 end
 

@@ -1,9 +1,6 @@
 % Code by Tran Nam Phong - B20DCVT288
 
-% Bai 26:
-% Tim nghiem phuong trinh vi phan y'(t) + a*y(t) = r
-% a = 1, r = 1, y(0) = 0; h = 0.25; t = 1
-% RK 4
+
 
 function output = bai27(C,R,t1,t2,h,t0,u0)
     u(1) = 0; x(1) = 0;
