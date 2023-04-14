@@ -26,14 +26,13 @@ function [y,code, filtered_nrz] = bai2(R)
         end
         switch(type)
             case 'unipol'
-                y(k) = 2*bits(n)-1;
-                code(n) = 2*bits(n)-1;
+                y(k) = bits(n);
+                code(n) = bits(n);
             case 'pol'
                 y(k) = 2*bits(n)-1;
-                code = 2*bits(n)-1;
+                code(n) = 2*bits(n)-1;
         end
     end
-
     % User butterwortth filter
     [b,a] = butter(n,2*R/w_B);
     filtered_nrz = filter(b,a,y);

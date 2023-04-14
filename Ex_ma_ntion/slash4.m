@@ -2,7 +2,7 @@
 
 % Slash 4
 
-function [x,y] = slash4(a,b)
+function [A,x,y] = slash4(a,b)
     A = zeros(a,b);
     A(1:(a*b)) = randi([1,100],1,a*b);
     A = reshape(A,1,a*b);
