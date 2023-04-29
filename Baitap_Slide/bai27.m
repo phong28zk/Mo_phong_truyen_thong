@@ -28,4 +28,4 @@ function output = bai27(C,R,t1,t2,h,t0,u0)
     legend('RK4');
 end
 
-
+% Tư bản lên
