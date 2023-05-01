@@ -4,21 +4,21 @@
 %        fs - sampling frequency ( 44100 Hz by default )
 % Output: none
 
-function bin2wav(binaryString, wavFileOut, fs)
-    % Default sampling frequency is 44100 Hz
+function bin2wav()
+    % Default sampling frequency is 8000 Hz
     if nargin < 3
-        fs = 44100;
+        Fs = 8000;
     end
 
-    % Calculate the number of complete bytes in the binary string
-    numBytes = floor(length(binaryString) / 8);
-
-    % Extract only the complete bytes and reshape them
-    data = double(reshape(binaryString(1:numBytes*8), 8, []).');
-
-    % Convert to decimal and scale to between -1 and 1
-    data = (bin2dec(num2str(data)) / 128) - 1;
-
-    % Write to WAV file
-    audiowrite(wavFileOut, data, fs);
+    % Doc dãy nh? phân t? file
+    fileID = fopen('binary.bin','r');
+    binary2 = fread(fileID);
+    fclose(fileID);
+    binary2 = binary2 - 48;
+    binary2 = reshape(binary2, 8, [])';
+    audioData2 = bi2de(binary2, 'left-msb');
+    audioData2 = typecast(uint8(audioData2), 'int8');
+    audioData2 = reshape(audioData2, [],2);
+    audioData2 = double(audioData2) / 127;
+    audiowrite('test_output.wav', audioData2, Fs, 'BitsPerSample', 8);
 end
