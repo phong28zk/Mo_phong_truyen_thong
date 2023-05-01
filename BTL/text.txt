@@ -1,0 +1,19 @@
+Simulation of a digital transmission system use Matlab at a data rate of 8 Mb/s. 
+Information resource of the system is a binary signal sequence equivalent randomization has size equal to 1000000. 
+Use 2-DPSK modulation for digital transmission system. Using a baseband equivalent simulation model, the transmitted signal can be represented as follows:
+s(t) = ∑ dk * p(t-kTsym) * e^(j*theta0) 
+in there
+     dk are complex symbols determined from the input message sequence and modulation technique;
+     Tsym is the period of the symbol;
+     theta0 is the phase of the transmitted signal;
+     p(t) defines the type of pulse to be transmitted, with:
+     p(t) = sqrt(2*Es/Tsym) * (1-cos(2*pi*t/Tsym))
+     where Es is the energy per symbol
+
+Source taken from file binaryString.txt
+
+Use Matlab, and figure:
+    2-DPSK moulated and received signal
+    Bit Error Rate
+
+
