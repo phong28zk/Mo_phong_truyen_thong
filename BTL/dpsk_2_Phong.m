@@ -24,7 +24,7 @@ d = dpskmod(data_sym,M);
 % 2. s(t) function
 % s(t) = ∑ dk * p(t-kTsym) * e^(j*theta0) 
 % p(t) = sqrt(2*Es/Tsym) * (1-cos(2*pi*t/Tsym))
-% => s(t) = 
+% => s(t) = ∑ dk * sqrt(2*Es/Tsym) * (1-cos(2*pi*(t-k*Tsym)/Tsym)) * e^(j*theta0)
 t = 0:ts:n/log2(M)*Tsym;
 for i = 1:length(t)
     s(i) = 0;
@@ -53,7 +53,7 @@ title('Scatterplot of Signal');
 
 % 7. Do thi va pho tin hieu sau khi qua AWGN
 figure;
-sing1_noise = addnoise(sing1, 8);
+sing1_noise = awgn(sing1, 10, 'measured');
 subplot(211);
 plot(t, real(sing1_noise));
 xlabel('Time'); ylabel('Amplitude');
@@ -77,4 +77,79 @@ eyediagram(real(sing1_noise), 20);
 title('Eye Diagram of Signal with AWGN');
 
 % 9. Scatterplot of signal with AWGN
-d_noise = addnoise(d,8);
+d_noise = awgn(d, 10, 'measured');
+h = scatterplot(d_noise,1,0,'x');
+hold on;
+scatterplot(d,1,0,'or');
+title('Scatterplot of Signal with AWGN');
+
+% 10. Xu ly va khoi phuc 
+sr = sing1_noise.*exp(-1i*2*pi*fc*t)*exp(-1i*phy);
+plot(t, real(sr));
+xlabel('Time'); ylabel('Amplitude');
+title('Signal Waveform after Raised Cosine Filter');
+
+% 11. Scatterplot of signal after Raised Cosine Filter
+scatterplot(sr,1,0,'or');
+title('Scatterplot of Signal after Raised Cosine Filter');
+
+% 12. Eye diagram of signal after Raised Cosine Filter
+eyediagram(real(sr), 20);
+title('Eye Diagram of Signal after Raised Cosine Filter');
+
+% B. BER by Monte-Carlo
+SNR_db = [ 2 5 10 ];
+for i = 1:length(SNR_db)
+    SNR = exp(SNR_db(i)*log(10)/10);
+    theory_BER(i) = 0.5*erfc(sqrt(SNR));
+    sim_BER(i) = monte_carlo_simulation(SNR_db(i), 1e5);
+end
+
+figure;
+semilogy(SNR_db, theory_BER, 'b');
+hold on;
+semilogy(SNR_db, sim_BER, 'r');
+grid on;
+legend('Theoretical BER', 'Simulation BER');
+xlabel('SNR (dB)');
+ylabel('BER');
+title('BER by Monte-Carlo');
+
+
+function [ber_avg] = monte_carlo_simulation(snr_db, num_trials)
+    % snr_db: Tỷ lệ tín hiệu nhiễu được biểu diễn dưới dạng dB
+    % num_trials: Số lần thử (trials) để đánh giá hiệu năng
+    % ber_avg: Mức độ bit (bit error rate) trung bình dựa trên kỹ thuật Monte Carlo
+    
+    % Thiết lập các thông số của hệ thống truyền thông số
+    num_bits = 10000;
+    data = randi([0 1], 1, num_bits);
+    
+    % Tính mức độ bit trung bình sau nhiều lần thử (trials)
+    ber_sum = 0;
+    for i = 1:num_trials
+        % Tạo ra tín hiệu điều chế (modulated signal)
+        modulated_signal = dpskmod(data, 2);
+        
+        % Tạo ra tín hiệu nhiễu Gauss với mức độ nhiễu được biểu diễn dưới dạng SNR_db
+        snr_linear = 10^(snr_db/10);
+        noise = randn(size(modulated_signal));
+        power_signal = mean(abs(modulated_signal).^2);
+        power_noise = power_signal/snr_linear;
+        noise = noise*sqrt(power_noise);
+        received_signal = modulated_signal + noise;
+        
+        % Giải điều chế tín hiệu để lấy lại dãy số bit
+        demodulated_data = dpskdemod(received_signal, 2);
+        
+        % Tính số lượng bit sai khác giữa dãy số ban đầu và dãy số được lấy lại
+        num_errors = sum(data ~= demodulated_data);
+        
+        % Tính mức độ bit dựa trên số lượng bit sai khác
+        ber_sum = ber_sum + num_errors/num_bits;
+    end
+    ber_avg = ber_sum/num_trials;
+end
+    
+
+    

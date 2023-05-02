@@ -12,13 +12,13 @@ function bin2wav()
 
     % Doc dãy nh? phân t? file
     fileID = fopen('binary.bin','r');
-    binary2 = fread(fileID);
+    binarySignal = fread(fileID);
     fclose(fileID);
-    binary2 = binary2 - 48;
-    binary2 = reshape(binary2, 8, [])';
-    audioData2 = bi2de(binary2, 'left-msb');
-    audioData2 = typecast(uint8(audioData2), 'int8');
-    audioData2 = reshape(audioData2, [],2);
-    audioData2 = double(audioData2) / 127;
-    audiowrite('test_output.wav', audioData2, Fs, 'BitsPerSample', 8);
+    binarySignal = binarySignal - 48;
+    binarySignal = reshape(binarySignal, 8, [])';
+    dataOutput = bi2de(binarySignal, 'left-msb');
+    dataOutput = typecast(uint8(dataOutput), 'int8');
+    dataOutput = reshape(dataOutput, [],2);
+    dataOutput = double(dataOutput) / 127;
+    audiowrite('test_output.wav', dataOutput, Fs, 'BitsPerSample', 8);
 end
