@@ -1,20 +1,21 @@
+% Ho va ten: Tran Nam Phong
 % Ma sinh vien: B20DCVT288
 % Toc do ky hieu: 8Mbps
-
 % Phuong phap dieu che: 2-DPSK
+
 close all;
 clear all;
 clc;
-M = 2;
-Es = 10;
-R = 8e6;
-Rsym = 4e6;
-Tsym = 1/Rsym;
-n = 1000;
-phy = 0;
-fs = 32*Rsym;
-fc = 2*Rsym;
-ts = 1/fs;
+M = 2;              % So muc
+Es = 10;            % Nang luong trung binh cua tin hieu truyen
+R = 8e6;            % Toc do truyen bit
+Rsym = 4e6;         % Toc do truyen ky hieu
+Tsym = 1/Rsym;      % Chu ky truyen ky hieu
+n = 10000;          % So ky hieu truyen
+phy = 0;            % Goc pha ban dau
+fs = 32*Rsym;       % Tan so lay mau
+fc = 2*Rsym;        % Tan so song mang
+ts = 1/fs;          % Chu ky lay mau
 
 % 1. Nhap tin hieu phat
 data = randi([0 1],1,n);
@@ -43,11 +44,32 @@ title('Signal Waveform');
 sing = s.*exp(1i*phy);
 sing1 = sing.*exp(1i*2*pi*fc*t);
 
-% 5. Do thi va pho tin hieu sau dieu che 
+% 4. Do thi va pho tin hieu truoc dieu che
+figure;
+% Do thi tin hieu
+subplot(211);
+plot(t, real(sing1));
+xlabel('Time'); ylabel('Amplitude');
+title('Signal Waveform before modulate');
+% Pho tin hieu
+subplot(212);
+N = length(sing1);
+xdft = fft(sing1);
+xdft = xdft(1:N/2+1);
+psdx = (1/(fs*N)) * abs(xdft).^2;
+psdx(2:end-1) = 2*psdx(2:end-1);
+freq = 0:fs/N:fs/2;
+plot(freq,10*log10(psdx));
+grid on;
+xlabel('Frequency (Hz)');
+ylabel('Power/Frequency (dB/Hz)');
+title('Spectrum of Signal before modulate')
+
+% 5. Do thi tin hieu sau dieu che 
 eyediagram(real(sing1), 20);
 title('Eye Diagram of Signal');
 
-% 6. Scatterplot
+% 6. Scatterplot - bieu do chom sao
 scatterplot(d,1,0,'or');
 title('Scatterplot of Signal');
 
@@ -83,8 +105,10 @@ hold on;
 scatterplot(d,1,0,'or');
 title('Scatterplot of Signal with AWGN');
 
-% 10. Xu ly va khoi phuc 
+% 10. Xu ly va khoi phuc, giai dieu che tin hieu
 sr = sing1_noise.*exp(-1i*2*pi*fc*t)*exp(-1i*phy);
+% Giai dieu che tin hieu
+sr = dpskdemod(sr,M);
 plot(t, real(sr));
 xlabel('Time'); ylabel('Amplitude');
 title('Signal Waveform after Raised Cosine Filter');
@@ -115,7 +139,7 @@ xlabel('SNR (dB)');
 ylabel('BER');
 title('BER by Monte-Carlo');
 
-
+% Monte-Carlo Simulation
 function [ber_avg] = monte_carlo_simulation(snr_db, num_trials)
     % snr_db: Tỷ lệ tín hiệu nhiễu được biểu diễn dưới dạng dB
     % num_trials: Số lần thử (trials) để đánh giá hiệu năng
@@ -150,6 +174,8 @@ function [ber_avg] = monte_carlo_simulation(snr_db, num_trials)
     end
     ber_avg = ber_sum/num_trials;
 end
+
+
     
 
     
