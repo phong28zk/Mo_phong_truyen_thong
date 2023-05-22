@@ -12,7 +12,7 @@ function output = b4(a,b)
     [~,quants] = quantiz(compsig, partition, codebook);
 
     newsig = compand(quants, 255, max(quants), 'mu/expander');
-    distor2 = sum((newsig-y).^2)/length(sig);
+    distor2 = sum((newsig-y).^2)/length(y);
 
     plot([y' compsig'], 'linewidth', 2);
     legend('Original Signal', 'Compressed Signal');
