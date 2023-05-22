@@ -1,7 +1,0 @@
-function a28(a,b,T)
-    b = b+2;
-    f = 1/T:
-    fs = 100*T;
-    t = linspace(0, N*T, fs*N*T);
-    x = (1/2) * sawtooth(2*pi*f*t)
-end
