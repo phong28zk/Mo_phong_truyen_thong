@@ -9,3 +9,4 @@ function [rowNDX,colNDX] = bai2_27()
     [rowNDX, colNDX] = ind2sub([100 100], 843);
 end
 
+
