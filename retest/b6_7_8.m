@@ -21,7 +21,7 @@ yf = sin(2*pi*fc*t + a*cos(2*pi*f*t + b)+cos(2*pi*f/2*t + b));
 figure(2)
 subplot(311)
 plot(t,ya)
-axis([0 0.02 -3 3])
+axis([0 0.02 -5 5])
 title('dieu che am')
 subplot(312)
 plot(t,yp)

@@ -17,9 +17,9 @@ function [A,B] = a14(a,b)
     hold on;
     xhalf = -2*pi:pi/2:2*pi;
     yhalf = sin(xhalf);
-    stem(xhalf, yhalf, 'rp','MarkerFaceColor','red','MarkerEdgeColor','navy');
+    stem(xhalf, yhalf, 'rp','MarkerFaceColor','red','MarkerEdgeColor','auto');
     yhalf = cos(xhalf);
-    stem(xhalf, yhalf, 'gp', 'MarkerFaceColor','green', 'MarkerEdgeColor','white');
+    stem(xhalf, yhalf, 'gp', 'MarkerFaceColor','green', 'MarkerEdgeColor','auto');
     legend('sin(x)','cos(x)', 'Location', 'southwest');    
 end
 
