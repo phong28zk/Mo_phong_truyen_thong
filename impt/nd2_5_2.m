@@ -29,3 +29,4 @@ for i = 1 : Np
     pt = [pt p*a(i)];
 end
 plot(tt, pt);
+axis([-0.5*Tp Tp*Np*1.2 -2 2])

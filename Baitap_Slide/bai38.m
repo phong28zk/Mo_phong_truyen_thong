@@ -17,9 +17,10 @@ function output = bai38()
 
     % NRZ
     nrz_signal = kron(2*bit - 1, ones(1, round(T*100)));
+    y = pskmod(bit, 2);
     ynoise = awgn(y,15);
     hold on;
-    y = pskmod(bit, 2);
+    
     yt = real(y);
     yp = imag(y);
 
