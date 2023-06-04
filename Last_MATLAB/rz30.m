@@ -15,6 +15,7 @@ for i=1:n
         pulse = pulse + (t>=bit_duration*(i-1) & t<bit_duration*(i-1)+duty*bit_duration);
     end
 end
+
 disp(pulse);
 plot(t,pulse);
 axis([0 n*bit_duration -0.5 1.5]);

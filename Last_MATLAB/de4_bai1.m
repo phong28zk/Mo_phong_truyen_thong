@@ -23,5 +23,4 @@ function output = de4_bai1(T,a,b)
     xlabel('Tần số');
     ylabel('Pha');
     xlim([-2*f, 2*f])
-
 end
