@@ -3,4 +3,6 @@ function output = phase_s(a,b,N)
     M = 2; k = log2(M);
     txSig = pskmod(bits, M);
     scatterplot(txSig);
+    rxSig = awgn(txSig, 10);
+    scatterplot(rxSig);
 end

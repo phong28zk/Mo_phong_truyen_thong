@@ -1,8 +1,10 @@
-bits = randi([0 1],1,10)
-bitrate = 0.3;
+a = 8; b = 8; c = a+b;
+
+bits = randi([0 1],1,a+b);
+bitrate = 0.1*b;
 n = 1000;
-T = length(bits)/bitrate;
-N = n*length(bits);
+T = 0.3*(a+b)*1e-3; % Tong thoi gian cua a+b xung ( 16 )
+N = n*length(bits); % So mau
 dt = T/N;
 t = 0:dt:T;
 x = zeros(1,length(t));
