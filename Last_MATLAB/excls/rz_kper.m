@@ -17,3 +17,4 @@ for i=1:length(bits)
 end
 plot(t,x,'LineWidth',3);
 
+
