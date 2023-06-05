@@ -6,6 +6,7 @@ function output = de4_bai1(T,a,b)
     plot(t,x,'linewidth',2);
     xlabel('x'); ylabel('A');
     axis([0 b*T -1.5 1.5]);
+    f = 1/T;
     X = fft(x); % Biến đổi Fourier của tín hiệu xung vuông
     freq = fftshift(linspace(-f/2, f/2, length(x))); % Tần số ứng với các phần tử của X
     X_mag = abs(X); % Biên độ của phổ Fourier

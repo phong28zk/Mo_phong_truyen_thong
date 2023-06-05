@@ -1,4 +1,4 @@
-function output = bai2_de2(a,b,N)
+function output = de2_bai2(a,b,N)
     % Tạo chuỗi bit gồm 50 phần tử
     bits = randi([0 1], 1, 50);
     
